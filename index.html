@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-创建一个可用的简单的SpringMVC项目" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/02/创建一个可用的简单的SpringMVC项目/" class="article-date">
+  <time datetime="2018-03-01T16:57:45.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/02/创建一个可用的简单的SpringMVC项目/">创建一个可用的简单的SpringMVC项目</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在自学SpringMVC，百度了很多资料都是比较老的，而且里面很多都不能用，后来自己多方对比后终于弄出来了一个，在这里记录以及跟同是新手的你分享下。</p>
+<p>首先说下我用的各种环境：</p>
+<p>Windows10系统</p>
+<p>SpringMVC用的是目前最新的4.3.4版本；</p>
+<p>tomcat用的是8.0.45版本（大家可以下8.5的或更高版本的，我的是压缩包而非安装程序，个人觉得用压缩包更方便）；</p>
+<p>JDK和JRE用的是1.8的；</p>
+<p>IDE用的是Eclipse neon.2；</p>
+<p>好了，搭建环境就自己弄下吧（比如安装JDK[和配置PATH之类的]和安装Eclipse[注意JDK如果是64位的Eclipse也必须是64位的]和下载tomcat和下载SpringMVC的jar包及设置Eclipse的工作区间），</p>
+<p>接下来我会通过图片和文字的方式详细的给出创建一个简单的SpringMVC项目的步骤。</p>
+<p>1、打开Eclipse，点击左上角File-New-Dynamic Web Project，如图：</p>
+<p>2、弹出窗口：</p>
+<p>Project name可以改成自己的项目名，图中用蓝笔画了的大家注意检查一下是不是一样（Tomcat可以是你们自己的版本，但是最好比8.0要高，而其它的就先按图中的来吧）；</p>
+<p>接下来点击Next，弹出窗口：</p>
+<p>然后将上图中的build\classes改成WebRoot\WEB-INF\classes，注意这里不改也行，但是为了和MyEclipse项目结构一致最好还是改下（而且个人觉得MyEclipse创建的Dynamic Web Project的项目结构更合理和易理解）；</p>
+<p>点击Next弹出窗口：</p>
+<p>注意，如果上一步改成了WebRoot\WEB-INF\classes则这一步就最最好将Content directory改成WebRoot（原先是WebContent），然后将蓝色圈中的勾打上，点击Finish。</p>
+<p>2、进行完上面的步骤后得到项目结构如下图：</p>
+<p>对着Java Resources下的src点击右键New-Package，弹出框如图：</p>
+<p>写好Name后点击Finish。</p>
+<p>然后对WEB-INF右键New-Folder，弹出如图：</p>
+<p>点击Finish，（可忽略 —&gt; 注意，一般除主页以外的动态页面都是要放在WEB-INF文件夹内的（一般是WEB-INF的子文件夹里，用于分类，如我这里就是在子文件夹jsp中）。</p>
+<p>此时项目的结构是：</p>
+<p>3、将项目所需的SpringMVC包添加到项目中，步骤是先复制所有SpringMVC4.3.4版本的jar，然后对WEB-INF文件夹下的lib文件夹右键-粘贴（或Ctrl+v）即可（添加jar包到项目里据说有三种方法，我这里用最简单的方法添加），如图：</p>
+<p>其实这个项目是不需要加入这么多jar包的，但是我懒得去测试哪些要哪些不要就都复制进去了（测试的方法可以是边删边运行，直到删到不能删为止）。</p>
+<p>4、接下来对silentdoer.web.controller右键，New-Class新建一个类名为HelloWorldController，如图：</p>
+<p> 点击Finish后改写HelloWorldController.java的代码为：</p>
+<p>复制代码<br>package silentdoer.web.controller;</p>
+<p>import org.springframework.stereotype.Controller;<br>import org.springframework.web.bind.annotation.RequestMapping;<br>import org.springframework.ui.Model;</p>
+<p>// 这里我写的注释要结合springmvc.xml里面的配置和index.jsp里面的内容一起看才容易理解<br>@Controller<br>public class HelloWorldController {</p>
+<pre><code>// RequestMapping中的hello是要客户端请求时所映射的字符串（个人的理解，暂时找不到更好的说法），而helloWorld函数则是处理该映射
+@RequestMapping(&quot;/hello&quot;)
+public String helloWorld(Model model) {  // 通过Model对象可以将数据返回给动态页面/前端页面（由服务器处理）
+    String viewArgValue = &quot;Hello World, SpringMVC&quot;;
+    model.addAttribute(&quot;message&quot;, viewArgValue);  // 这里的message就是动态页面中的参数名，即hello.jsp页面中${message}中的message，viewArgValue是参数值
+    // 返回WEB-INF/jsp/hello.jsp文件给客户端（是经过服务端处理的），因为我们springmvc.xml里配置了prefix和suffix故这里前缀+逻辑视图名+后缀就得到了要返回文件的完整路径
+    // 这里顺便说一下WEB-INF下的资源是客户端无法直接访问到的
+    return &quot;/hello&quot;;
+}
+</code></pre><p>}<br>复制代码<br>接下来配置web.xml文件，将其更改为：</p>
+<p>复制代码<br>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<p><web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemalocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1"><br>    <display-name>FirstSpringMVCProj</display-name></web-app></p>
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+        &lt;!-- 设置SpringMVC配置文件的位置，注意该位置默认是src文件夹下 --&gt;
+        &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+    &lt;!-- 据说是拦截所有静态文件的请求，如.js；.css文件等 --&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+
+&lt;!-- 设置默认页面，注意这个页面是直接在WebRoot文件夹下的，如果是在WebRoot下的view文件夹下就要配置成view\index.jsp，但是默认页面不要放在WEB-INF内 --&gt;
+&lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+&lt;/welcome-file-list&gt;
+</code></pre><p><br>复制代码<br>接下来在src下新建springmvc.xml文件，右键src文件夹New-Other，输入XML找到XML类型文件，如图：</p>
+<p>点击Next，将名字改为springmvc.xml后点击Finish。</p>
+<p>将springmvc.xml里面的配置改为：</p>
+<p>复制代码<br>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<p><beans xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.springframework.org/schema/beans
+                                      http://www.springframework.org/schema/beans/spring-beans.xsd
+                                      http://www.springframework.org/schema/context
+                                      http://www.springframework.org/schema/context/spring-context.xsd"><br>                                      <!-- 注意上面的也可以写成spring-context-4.3.xsd，如果不写则默认是用当前的版本 --></beans></p>
+<pre><code>&lt;!-- 注意这里的base-package的值就是HelloWorldController.java所在的包名 --&gt;
+&lt;context:component-scan base-package=&quot;silentdoer.web.controller&quot; /&gt;
+
+&lt;!-- 注意prefix前后的/不要漏了，WebRoot类似是根目录 --&gt;
+&lt;bean id=&quot;viewResolver&quot;
+    class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot; /&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot; /&gt;
+&lt;/bean&gt;
+</code></pre><p><br>复制代码<br>接下来在jsp文件夹下新建一个JSP File，改名为hello.jsp（由于比较简单就不截图了），然后该文件中的代码为：</p>
+<p>复制代码<br>&lt;%@ page language=”java” contentType=”text/html; charset=UTF-8”<br>    pageEncoding=”UTF-8”%&gt;<br>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “<a href="http://www.w3.org/TR/html4/loose.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</a></p>
+<p><html></html></p>
+<p><head></head></p>
+<p><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></p>
+<p><title>Insert title here</title><br></p>
+<p><body><br>    <p>This is my message: ${message}</p><br></body><br><br>复制代码<br>然后对着WebRoot文件夹新建index.jsp文件，里面的代码为：</p>
+<p>复制代码<br>&lt;%@ page language=”java” contentType=”text/html; charset=UTF-8”<br>    pageEncoding=”UTF-8”%&gt;<br>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “<a href="http://www.w3.org/TR/html4/loose.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</a></p>
+<p><html></html></p>
+<p><head></head></p>
+<p><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></p>
+<p><title>Insert title here</title><br></p>
+<p><body><br>    <a href="hello.html">Hello World</a><br></body><br><br>复制代码<br>现在的项目结构如下：</p>
+<p>至此项目已经写好了，还需要配置Tomcat（记得将tomcat解压缩到软件盘符里，我的是R盘名为：apache-tomcat-8.0.45[文件夹]）</p>
+<p>点击Eclipse内上方的Window-preferences，然后点击Server-Runtime Environments，如图：</p>
+<p>点击Add，选中Apache Tomcat v8.0（如果你的是别的版本就选你们对应的），点击Next，弹出如图：</p>
+<p>Browse…找到自己Tomcat存放的位置（我的Tomcat位置如上图，这里推荐下载Zip包的Tomcat即可然后解压到相应位置中）将蓝框中改为自己相应的JDK，点击Finish。</p>
+<p>Preferences中变为如图：</p>
+<p>点击OK。</p>
+<p>接下来就可以运行了，对项目右键Run As-Run on Server，弹出如图：</p>
+<p>直接点击Finish即可，过一会儿（项目运行也是要时间的嘛）Eclipse代码区域会弹出页面如图：</p>
+<p>点击Hello World即可完成跳转。</p>
+<p>如果想在浏览器里看按照上图输入地址即可。</p>
+<p>如果想停止运行点击下方的Tomcat然后点击右边的红框即可，如图：</p>
+<p>至此已全部完毕。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/02/创建一个可用的简单的SpringMVC项目/" data-id="cje8umjpq000130de3539pyay" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-My-New-Post" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/02/My-New-Post/" class="article-date">
+  <time datetime="2018-03-01T16:53:39.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/02/My-New-Post/">My New Post</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在自学SpringMVC，百度了很多资料都是比较老的，而且里面很多都不能用，后来自己多方对比后终于弄出来了一个，在这里记录以及跟同是新手的你分享下。</p>
+<p>首先说下我用的各种环境：</p>
+<p>Windows10系统</p>
+<p>SpringMVC用的是目前最新的4.3.4版本；</p>
+<p>tomcat用的是8.0.45版本（大家可以下8.5的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/02/My-New-Post/" data-id="cje8umjnt000030de0026941v" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/02/hello-world/" class="article-date">
+  <time datetime="2018-03-01T16:43:15.328Z" itemprop="datePublished">2018-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/02/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/02/hello-world/" data-id="cje8umjq4000230de4z9rkz0r" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/02/创建一个可用的简单的SpringMVC项目/">创建一个可用的简单的SpringMVC项目</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/02/My-New-Post/">My New Post</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
